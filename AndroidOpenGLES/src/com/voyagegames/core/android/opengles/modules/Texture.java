@@ -30,5 +30,14 @@ public class Texture {
         
         textureID = textures[0];
 	}
+	
+	public void setFilters(final boolean generateMipmaps, final int minFilter, final int magFilter) {
+		if (generateMipmaps) {
+			GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);
+		}
+		
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, minFilter);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, magFilter);
+	}
 
 }

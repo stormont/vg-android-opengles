@@ -9,5 +9,6 @@ public interface IRenderableBuffer {
 	int requiredAttributeSize();
 	void setHandles(ShaderHandles handles);
 	void render(List<String> attributes);
+	void convertToVertexBufferObject(int bufferIndex);
 
 }
