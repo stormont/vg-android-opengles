@@ -8,6 +8,7 @@ public class Utility {
     private static String TAG = Utility.class.getName();
 	
     public static final int FLOAT_SIZE_BYTES = 4;
+    public static final int SHORT_SIZE_BYTES = 2;
 
     public static void checkGlError(final String tag, final String op) {
         final int error = GLES20.glGetError();

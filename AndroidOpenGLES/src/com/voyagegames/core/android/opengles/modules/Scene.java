@@ -11,10 +11,12 @@ public class Scene implements IScene {
 	private final int mClearMask;
 	
 	private ICamera mCamera;
+	private Vector2D mViewportSize;
 	
 	public Scene(final Vector4D clearColor, final int clearMask) {
 		mClearColor = clearColor;
 		mClearMask = clearMask;
+		mViewportSize = new Vector2D(1.0f, 1.0f);
 	}
 	
 	@Override
@@ -23,14 +25,24 @@ public class Scene implements IScene {
 	}
 
 	@Override
+	public Vector2D viewportSize() {
+		return mViewportSize;
+	}
+
+	@Override
 	public void setCamera(final ICamera camera) {
 		mCamera = camera;
+		mCamera.setFrustum(mViewportSize.x, mViewportSize.y);
 	}
 
 	@Override
 	public void updateViewport(final int width, final int height) {
         GLES20.glViewport(0, 0, width, height);
-        mCamera.setFrustum(width, height);
+        mViewportSize = new Vector2D(width, height);
+        
+        if (mCamera != null) {
+        	mCamera.setFrustum(width, height);
+        }
 	}
 
 	@Override

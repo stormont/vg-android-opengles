@@ -18,6 +18,16 @@ public class Camera implements ICamera {
 	}
 
 	@Override
+	public LookAt lookAt() {
+		return mLookAt;
+	}
+
+	@Override
+	public Frustum frustum() {
+		return mFrustum;
+	}
+
+	@Override
 	public float[] viewMatrix() {
 		return mViewMatrix;
 	}
@@ -32,13 +42,13 @@ public class Camera implements ICamera {
         Matrix.setLookAtM(
         		mViewMatrix, 0,
         		mLookAt.eye.x, mLookAt.eye.y, mLookAt.eye.z,
-        		mLookAt.center.x, mLookAt.center.y, mLookAt.center.z,
+        		mLookAt.at.x, mLookAt.at.y, mLookAt.at.z,
         		mLookAt.up.x, mLookAt.up.y, mLookAt.up.z);
 	}
 
 	@Override
-	public void setFrustum(final int width, final int height) {
-        final float ratio = (float) width / height;
+	public void setFrustum(final float width, final float height) {
+        final float ratio = width / height;
         Matrix.frustumM(mProjMatrix, 0, -ratio, ratio, mFrustum.bottom, mFrustum.top, mFrustum.near, mFrustum.far);
 	}
 

@@ -10,5 +10,6 @@ public interface IRenderableBuffer {
 	void setHandles(ShaderHandles handles);
 	void render(List<String> attributes);
 	void convertToVertexBufferObject(int bufferIndex);
+	void convertToIndexBufferObject(int bufferIndex);
 
 }
