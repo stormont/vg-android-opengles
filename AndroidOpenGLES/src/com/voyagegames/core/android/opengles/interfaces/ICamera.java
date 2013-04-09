@@ -9,7 +9,10 @@ public interface ICamera {
 	Frustum frustum();
 	float[] viewMatrix();
 	float[] projectionMatrix();
-	void setLookAt();
-	void setFrustum(float width, float height);
+	float fieldOfView();
+	void setLookAt(LookAt lookAt);
+	void setFrustum(Frustum frustum);
+	void setFieldOfView(float fieldOfView);
+	void setViewport(float width, float height);
 
 }

@@ -91,13 +91,21 @@ public abstract class AbstractTriangleBuffer implements IRenderableBuffer {
 	
 	@Override
 	public void convertToVertexBufferObject(final int bufferIndex) {
+		if (mVertices == null) {
+			return;
+		}
+		
 		mUseVertexBufferObject = true;
 		mVertexBufferIndex = bufferIndex;
 		
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, bufferIndex);
 		
 		// Transfer data from client memory to the buffer. We can release the client memory after this call.
-		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, mVertices.capacity() * Utility.FLOAT_SIZE_BYTES, mVertices, GLES20.GL_STATIC_DRAW);
+		GLES20.glBufferData(
+				GLES20.GL_ARRAY_BUFFER,
+				mVertices.capacity() * Utility.FLOAT_SIZE_BYTES,
+				mVertices,
+				GLES20.GL_STATIC_DRAW);
 		
 		// IMPORTANT: Unbind from the buffer when we're done with it.
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
@@ -107,13 +115,21 @@ public abstract class AbstractTriangleBuffer implements IRenderableBuffer {
 	
 	@Override
 	public void convertToIndexBufferObject(final int bufferIndex) {
+		if (mIndices == null) {
+			return;
+		}
+		
 		mUseIndexBufferObject = true;
 		mIndexBufferIndex = bufferIndex;
 		
 		GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, bufferIndex);
 		
 		// Transfer data from client memory to the buffer. We can release the client memory after this call.
-		GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, mIndices.capacity() * Utility.SHORT_SIZE_BYTES, mIndices, GLES20.GL_STATIC_DRAW);
+		GLES20.glBufferData(
+				GLES20.GL_ELEMENT_ARRAY_BUFFER,
+				mIndices.capacity() * Utility.SHORT_SIZE_BYTES,
+				mIndices,
+				GLES20.GL_STATIC_DRAW);
 		
 		// IMPORTANT: Unbind from the buffer when we're done with it.
 		GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, 0);

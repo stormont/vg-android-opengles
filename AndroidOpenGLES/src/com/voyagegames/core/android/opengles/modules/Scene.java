@@ -32,7 +32,7 @@ public class Scene implements IScene {
 	@Override
 	public void setCamera(final ICamera camera) {
 		mCamera = camera;
-		mCamera.setFrustum(mViewportSize.x, mViewportSize.y);
+		mCamera.setViewport(mViewportSize.x, mViewportSize.y);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class Scene implements IScene {
         mViewportSize = new Vector2D(width, height);
         
         if (mCamera != null) {
-        	mCamera.setFrustum(width, height);
+        	mCamera.setViewport(width, height);
         }
 	}
 

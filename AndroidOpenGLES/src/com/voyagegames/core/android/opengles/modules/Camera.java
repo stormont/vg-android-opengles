@@ -6,15 +6,23 @@ import com.voyagegames.core.android.opengles.interfaces.ICamera;
 
 public class Camera implements ICamera {
 
-	private final LookAt mLookAt;
-	private final Frustum mFrustum;
 	private final float[] mViewMatrix = new float[16];
 	private final float[] mProjMatrix = new float[16];
 	
+	protected LookAt mLookAt;
+	protected Frustum mFrustum;
+	protected float mFieldOfView;
+	
 	public Camera(final LookAt lookAt, final Frustum frustum) {
-		mLookAt = lookAt;
-		mFrustum = frustum;
-		setLookAt();
+		mFieldOfView = 60.0f;
+		setLookAt(lookAt);
+		setFrustum(frustum);
+	}
+	
+	public Camera(final LookAt lookAt, final Frustum frustum, final float fieldOfView) {
+		mFieldOfView = fieldOfView;
+		setLookAt(lookAt);
+		setFrustum(frustum);
 	}
 
 	@Override
@@ -28,6 +36,11 @@ public class Camera implements ICamera {
 	}
 
 	@Override
+	public float fieldOfView() {
+		return mFieldOfView;
+	}
+
+	@Override
 	public float[] viewMatrix() {
 		return mViewMatrix;
 	}
@@ -38,18 +51,39 @@ public class Camera implements ICamera {
 	}
 
 	@Override
-	public void setLookAt() {
+	public void setLookAt(final LookAt lookAt) {
+		mLookAt = lookAt;
+		calculateViewMatrix();
+	}
+
+	@Override
+	public void setFrustum(final Frustum frustum) {
+		mFrustum = frustum;
+        calculateProjectionMatrix();
+	}
+	
+	@Override
+	public void setFieldOfView(final float fieldOfView) {
+		mFieldOfView = fieldOfView;
+        calculateProjectionMatrix();
+	}
+
+	@Override
+	public void setViewport(final float width, final float height) {
+        mFieldOfView = width / height;
+        calculateProjectionMatrix();
+	}
+	
+	private void calculateViewMatrix() {
         Matrix.setLookAtM(
         		mViewMatrix, 0,
         		mLookAt.eye.x, mLookAt.eye.y, mLookAt.eye.z,
         		mLookAt.at.x, mLookAt.at.y, mLookAt.at.z,
         		mLookAt.up.x, mLookAt.up.y, mLookAt.up.z);
 	}
-
-	@Override
-	public void setFrustum(final float width, final float height) {
-        final float ratio = width / height;
-        Matrix.frustumM(mProjMatrix, 0, -ratio, ratio, mFrustum.bottom, mFrustum.top, mFrustum.near, mFrustum.far);
+	
+	private void calculateProjectionMatrix() {
+        Matrix.frustumM(mProjMatrix, 0, -mFieldOfView, mFieldOfView, mFrustum.bottom, mFrustum.top, mFrustum.near, mFrustum.far);
 	}
 
 }
