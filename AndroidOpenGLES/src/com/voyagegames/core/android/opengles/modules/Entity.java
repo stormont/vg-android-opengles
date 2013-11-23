@@ -7,12 +7,14 @@ import com.voyagegames.core.android.opengles.interfaces.IEntity;
 public class Entity implements IEntity {
 	
 	protected Vector3D mPosition;
+	protected Vector3D mScale;
 	protected Vector3D mRotationAxis;
 	protected float    mRotationAngle;
 	
 	public Entity() {
 		mPosition = new Vector3D(0, 0, 0);
 		mRotationAxis = new Vector3D(0, 0, 0);
+		mScale = new Vector3D(1f, 1f, 1f);
 	}
 
 	@Override
@@ -46,6 +48,16 @@ public class Entity implements IEntity {
 	}
 
 	@Override
+	public Vector3D scale() {
+		return mScale;
+	}
+
+	@Override
+	public void setScale(final Vector3D scale) {
+		mScale = scale;
+	}
+
+	@Override
 	public float[] modelMatrix() {
 		final float[] modelMatrix = new float[16];
 		
@@ -56,6 +68,7 @@ public class Entity implements IEntity {
         	Matrix.rotateM(modelMatrix, 0, mRotationAngle, mRotationAxis.x, mRotationAxis.y, mRotationAxis.z);
         }
         
+        Matrix.scaleM(modelMatrix, 0, mScale.x, mScale.y, mScale.z);
 		return modelMatrix;
 	}
 

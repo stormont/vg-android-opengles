@@ -13,6 +13,9 @@ public interface IEntity {
 	Vector3D rotationAxis();
 	void setRotationAxis(Vector3D axis);
 	
+	Vector3D scale();
+	void setScale(Vector3D scale);
+	
 	float[] modelMatrix();
 
 }
