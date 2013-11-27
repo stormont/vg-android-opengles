@@ -17,5 +17,8 @@ public interface IEntity {
 	void setScale(Vector3D scale);
 	
 	float[] modelMatrix();
-
+	float[] translationMatrix();
+	float[] rotationMatrix();
+	float[] scalingMatrix();
+	float[] offsetModelMatrix(IEntity entity);
 }
