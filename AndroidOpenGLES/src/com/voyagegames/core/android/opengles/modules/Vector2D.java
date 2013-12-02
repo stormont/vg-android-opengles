@@ -1,9 +1,15 @@
 package com.voyagegames.core.android.opengles.modules;
 
+
 public class Vector2D {
 	
 	public final float x;
 	public final float y;
+	
+	public Vector2D() {
+		this.x = 0f;
+		this.y = 0f;
+	}
 	
 	public Vector2D(final float x, final float y) {
 		this.x = x;
@@ -25,6 +31,100 @@ public class Vector2D {
 		result[0] = x;
 		result[1] = y;
 		return result;
+	}
+	
+	public float length() {
+		return (float) Math.sqrt(lengthSquared());
+	}
+	
+	public float lengthSquared() {
+		return (x * x) + (y * y);
+	}
+	
+	public boolean equals(final Vector2D rhs) {
+		return equals(this, rhs);
+	}
+	
+	public static boolean equals(final Vector2D lhs, final Vector2D rhs) {
+		return (lhs.x == rhs.x)
+				&& (lhs.y == rhs.y);
+	}
+	
+	public boolean equals(final Vector2D rhs, final float delta) {
+		return equals(this, rhs, delta);
+	}
+	
+	public static boolean equals(final Vector2D lhs, final Vector2D rhs, final float delta) {
+		return (Math.abs(lhs.x - rhs.x) <= delta)
+				&& (Math.abs(lhs.y - rhs.y) <= delta);
+	}
+	
+	public Vector2D normalize() {
+		return normalize(this);
+	}
+	
+	public static Vector2D normalize(final Vector2D vec) {
+		final float len = vec.length();
+		if (len == 0f) return null;
+		return new Vector2D(vec.x / len, vec.y / len);
+	}
+	
+	public Vector2D add(final Vector2D rhs) {
+		return add(this, rhs);
+	}
+	
+	public static Vector2D add(final Vector2D lhs, final Vector2D rhs) {
+		return new Vector2D(lhs.x + rhs.x, lhs.y + rhs.y);
+	}
+	
+	public Vector2D subtract(final Vector2D rhs) {
+		return subtract(this, rhs);
+	}
+	
+	public static Vector2D subtract(final Vector2D lhs, final Vector2D rhs) {
+		return new Vector2D(lhs.x - rhs.x, lhs.y - rhs.y);
+	}
+	
+	public Vector2D multiply(final Vector2D rhs) {
+		return multiply(this, rhs);
+	}
+	
+	public static Vector2D multiply(final Vector2D lhs, final Vector2D rhs) {
+		return new Vector2D(lhs.x * rhs.x, lhs.y * rhs.y);
+	}
+	
+	public Vector2D divide(final Vector2D rhs) {
+		return divide(this, rhs);
+	}
+	
+	public static Vector2D divide(final Vector2D lhs, final Vector2D rhs) {
+		if (rhs.x == 0f) return null;
+		if (rhs.y == 0f) return null;
+		return new Vector2D(lhs.x / rhs.x, lhs.y / rhs.y);
+	}
+	
+	public float distance(final Vector2D rhs) {
+		return distance(this, rhs);
+	}
+	
+	public static float distance(final Vector2D lhs, final Vector2D rhs) {
+		return Vector2D.subtract(lhs, rhs).length();
+	}
+	
+	public float distanceSquared(final Vector2D rhs) {
+		return distanceSquared(this, rhs);
+	}
+	
+	public static float distanceSquared(final Vector2D lhs, final Vector2D rhs) {
+		return Vector2D.subtract(lhs, rhs).lengthSquared();
+	}
+	
+	public Vector2D scale(final float scale) {
+		return scale(this, scale);
+	}
+	
+	public static Vector2D scale(final Vector2D lhs, final float scale) {
+		return new Vector2D(lhs.x * scale, lhs.y * scale);
 	}
 
 }
