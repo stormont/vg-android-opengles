@@ -6,7 +6,7 @@ public class MatrixExt {
     
     public static Vector3D unprojectRay(
     		final float x, final float y,
-    		final float[] projectionMatrix, final float[] viewModelMatrix,
+    		final float[] projectionMatrix, final float[] modelViewMatrix,
     		final float viewportWidth, final float viewportHeight) {
     	// via: http://www.antongerdelan.net/opengl/raycasting.html
     	// For a common camera-centered viewModelMatrix, invert the camera's view matrix
@@ -24,7 +24,7 @@ public class MatrixExt {
     	rayEye[3] = 0f;
     	
     	final float[] rayWorld = new float[4];
-    	Matrix.multiplyMV(rayWorld, 0, viewModelMatrix, 0, rayEye, 0);
+    	Matrix.multiplyMV(rayWorld, 0, modelViewMatrix, 0, rayEye, 0);
     	
     	return new Vector3D(rayWorld).normalize();
     }
