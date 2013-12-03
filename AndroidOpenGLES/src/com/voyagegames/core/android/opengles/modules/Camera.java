@@ -5,6 +5,15 @@ import android.opengl.Matrix;
 import com.voyagegames.core.android.opengles.interfaces.ICamera;
 
 public class Camera implements ICamera {
+	
+	public static Vector3D unprojectRay(final float x, final float y, final ICamera camera) {
+		final float[] invertedView = new float[16];
+		if (!Matrix.invertM(invertedView, 0, camera.viewMatrix(), 0)) return null;
+		return MatrixExt.unprojectRay(
+				x, y,
+				camera.projectionMatrix(), invertedView,
+				camera.viewportWidth(), camera.viewportHeight());
+	}
 
 	private final float[] mViewMatrix = new float[16];
 	private final float[] mProjMatrix = new float[16];
