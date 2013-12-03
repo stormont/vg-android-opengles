@@ -71,6 +71,14 @@ public class Vector3D extends Vector2D {
 		return new Vector3D(vec.x / len, vec.y / len, vec.z / len);
 	}
 	
+	public Vector3D unit() {
+		return normalize(this);
+	}
+	
+	public static Vector3D unit(final Vector3D vec) {
+		return normalize(vec);
+	}
+	
 	public Vector3D add(final Vector3D rhs) {
 		return add(this, rhs);
 	}
@@ -87,23 +95,23 @@ public class Vector3D extends Vector2D {
 		return new Vector3D(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
 	}
 	
-	public Vector3D multiply(final Vector3D rhs) {
-		return multiply(this, rhs);
+	public float dot(final Vector3D rhs) {
+		return dot(this, rhs);
 	}
 	
-	public static Vector3D multiply(final Vector3D lhs, final Vector3D rhs) {
-		return new Vector3D(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
+	public static float dot(final Vector3D lhs, final Vector3D rhs) {
+		return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 	}
 	
-	public Vector3D divide(final Vector3D rhs) {
-		return divide(this, rhs);
+	public Vector3D cross(final Vector3D rhs) {
+		return cross(this, rhs);
 	}
 	
-	public static Vector3D divide(final Vector3D lhs, final Vector3D rhs) {
-		if (rhs.x == 0f) return null;
-		if (rhs.y == 0f) return null;
-		if (rhs.z == 0f) return null;
-		return new Vector3D(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
+	public static Vector3D cross(final Vector3D lhs, final Vector3D rhs) {
+		return new Vector3D(
+				lhs.y * rhs.z - lhs.z * rhs.y,
+				lhs.z * rhs.x - lhs.x * rhs.z,
+				lhs.x * rhs.y - lhs.y * rhs.x);
 	}
 	
 	public float distance(final Vector3D rhs) {

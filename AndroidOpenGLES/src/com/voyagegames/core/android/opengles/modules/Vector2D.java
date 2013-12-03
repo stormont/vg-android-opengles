@@ -69,6 +69,14 @@ public class Vector2D {
 		return new Vector2D(vec.x / len, vec.y / len);
 	}
 	
+	public Vector2D unit() {
+		return normalize(this);
+	}
+	
+	public static Vector2D unit(final Vector2D vec) {
+		return normalize(vec);
+	}
+	
 	public Vector2D add(final Vector2D rhs) {
 		return add(this, rhs);
 	}
@@ -85,22 +93,12 @@ public class Vector2D {
 		return new Vector2D(lhs.x - rhs.x, lhs.y - rhs.y);
 	}
 	
-	public Vector2D multiply(final Vector2D rhs) {
-		return multiply(this, rhs);
+	public float dot(final Vector2D rhs) {
+		return dot(this, rhs);
 	}
 	
-	public static Vector2D multiply(final Vector2D lhs, final Vector2D rhs) {
-		return new Vector2D(lhs.x * rhs.x, lhs.y * rhs.y);
-	}
-	
-	public Vector2D divide(final Vector2D rhs) {
-		return divide(this, rhs);
-	}
-	
-	public static Vector2D divide(final Vector2D lhs, final Vector2D rhs) {
-		if (rhs.x == 0f) return null;
-		if (rhs.y == 0f) return null;
-		return new Vector2D(lhs.x / rhs.x, lhs.y / rhs.y);
+	public static float dot(final Vector2D lhs, final Vector2D rhs) {
+		return (lhs.x * rhs.x) + (lhs.y * rhs.y);
 	}
 	
 	public float distance(final Vector2D rhs) {

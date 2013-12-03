@@ -10,6 +10,8 @@ public interface ICamera {
 	float[] viewMatrix();
 	float[] projectionMatrix();
 	float fieldOfView();
+	float viewportWidth();
+	float viewportHeight();
 	void setLookAt(LookAt lookAt);
 	void setFrustum(Frustum frustum);
 	void setFieldOfView(float fieldOfView);

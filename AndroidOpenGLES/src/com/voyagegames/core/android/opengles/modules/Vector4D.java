@@ -73,6 +73,14 @@ public class Vector4D extends Vector3D {
 		return new Vector4D(vec.x / len, vec.y / len, vec.z / len, vec.w / len);
 	}
 	
+	public Vector4D unit() {
+		return normalize(this);
+	}
+	
+	public static Vector4D unit(final Vector4D vec) {
+		return normalize(vec);
+	}
+	
 	public Vector4D add(final Vector4D rhs) {
 		return add(this, rhs);
 	}
@@ -89,24 +97,20 @@ public class Vector4D extends Vector3D {
 		return new Vector4D(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
 	}
 	
-	public Vector4D multiply(final Vector4D rhs) {
-		return multiply(this, rhs);
+	public float dot(final Vector4D rhs) {
+		return dot(this, rhs);
 	}
 	
-	public static Vector4D multiply(final Vector4D lhs, final Vector4D rhs) {
+	public static float dot(final Vector4D lhs, final Vector4D rhs) {
+		return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z) + (lhs.w * rhs.w);
+	}
+	
+	public Vector4D cross(final Vector4D rhs) {
+		return cross(this, rhs);
+	}
+	
+	public static Vector4D cross(final Vector4D lhs, final Vector4D rhs) {
 		return new Vector4D(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z, lhs.w * rhs.w);
-	}
-	
-	public Vector4D divide(final Vector4D rhs) {
-		return divide(this, rhs);
-	}
-	
-	public static Vector4D divide(final Vector4D lhs, final Vector4D rhs) {
-		if (rhs.x == 0f) return null;
-		if (rhs.y == 0f) return null;
-		if (rhs.z == 0f) return null;
-		if (rhs.w == 0f) return null;
-		return new Vector4D(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z, lhs.w / rhs.w);
 	}
 	
 	public float distance(final Vector4D rhs) {

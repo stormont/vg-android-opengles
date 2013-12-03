@@ -12,6 +12,8 @@ public class Camera implements ICamera {
 	protected LookAt mLookAt;
 	protected Frustum mFrustum;
 	protected float mFieldOfView;
+	protected float mViewportWidth;
+	protected float mViewportHeight;
 	
 	public Camera(final LookAt lookAt, final Frustum frustum) {
 		mFieldOfView = 60.0f;
@@ -38,6 +40,16 @@ public class Camera implements ICamera {
 	@Override
 	public float fieldOfView() {
 		return mFieldOfView;
+	}
+	
+	@Override
+	public float viewportWidth() {
+		return mViewportWidth;
+	}
+	
+	@Override
+	public float viewportHeight() {
+		return mViewportHeight;
 	}
 
 	@Override
@@ -70,6 +82,8 @@ public class Camera implements ICamera {
 
 	@Override
 	public void setViewport(final float width, final float height) {
+		mViewportWidth = width;
+		mViewportHeight = height;
         mFieldOfView = width / height;
         calculateProjectionMatrix();
 	}
