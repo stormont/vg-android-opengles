@@ -1,5 +1,7 @@
 package com.voyagegames.core.android.opengles.modules;
 
+import com.voyagegames.core.android.opengles.modules.geometry.Vector3D;
+
 import android.opengl.Matrix;
 
 public class MatrixExt {

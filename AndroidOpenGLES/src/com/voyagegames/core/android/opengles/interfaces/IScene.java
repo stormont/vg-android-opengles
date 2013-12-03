@@ -1,6 +1,6 @@
 package com.voyagegames.core.android.opengles.interfaces;
 
-import com.voyagegames.core.android.opengles.modules.Vector2D;
+import com.voyagegames.core.android.opengles.modules.geometry.Vector2D;
 
 public interface IScene {
 	

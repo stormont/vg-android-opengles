@@ -1,4 +1,4 @@
-package com.voyagegames.core.android.opengles.modules;
+package com.voyagegames.core.android.opengles.modules.geometry;
 
 public class Vector4D extends Vector3D {
 	
@@ -135,6 +135,14 @@ public class Vector4D extends Vector3D {
 	
 	public static Vector4D scale(final Vector4D lhs, final float scale) {
 		return new Vector4D(lhs.x * scale, lhs.y * scale, lhs.z * scale, lhs.w * scale);
+	}
+	
+	public Vector4D multiply(final float length) {
+		return scale(this, length);
+	}
+	
+	public static Vector4D multiply(final Vector4D vec, final float length) {
+		return scale(vec, length);
 	}
 
 }

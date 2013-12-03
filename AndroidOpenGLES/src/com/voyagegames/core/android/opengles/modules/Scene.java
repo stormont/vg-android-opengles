@@ -4,6 +4,8 @@ import android.opengl.GLES20;
 
 import com.voyagegames.core.android.opengles.interfaces.ICamera;
 import com.voyagegames.core.android.opengles.interfaces.IScene;
+import com.voyagegames.core.android.opengles.modules.geometry.Vector2D;
+import com.voyagegames.core.android.opengles.modules.geometry.Vector4D;
 
 public class Scene implements IScene {
 	

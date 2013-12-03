@@ -1,5 +1,7 @@
 package com.voyagegames.core.android.opengles.modules;
 
+import com.voyagegames.core.android.opengles.modules.geometry.Vector3D;
+
 
 //
 // This is a modification on spherical coordinates as defined at: http://en.wikipedia.org/wiki/Spherical_coordinate_system

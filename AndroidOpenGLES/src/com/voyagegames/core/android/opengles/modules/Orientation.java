@@ -3,6 +3,7 @@ package com.voyagegames.core.android.opengles.modules;
 import android.opengl.Matrix;
 
 import com.voyagegames.core.android.opengles.interfaces.IOrientation;
+import com.voyagegames.core.android.opengles.modules.geometry.Vector3D;
 
 public class Orientation implements IOrientation {
 	

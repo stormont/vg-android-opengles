@@ -1,6 +1,6 @@
 package com.voyagegames.core.android.opengles.interfaces;
 
-import com.voyagegames.core.android.opengles.modules.Vector3D;
+import com.voyagegames.core.android.opengles.modules.geometry.Vector3D;
 
 public interface IOrientation {
 	

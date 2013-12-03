@@ -1,5 +1,7 @@
 package com.voyagegames.core.android.opengles.modules;
 
+import com.voyagegames.core.android.opengles.modules.geometry.Vector3D;
+
 public class ChaseCamera extends OrbitCamera {
 
 	public ChaseCamera(final LookAt lookAt, final Frustum frustum) {
